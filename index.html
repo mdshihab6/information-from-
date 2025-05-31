@@ -2,121 +2,202 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Submit Your Info</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Swift Agency</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: #fff;
+      background-color: #f9f9f9;
     }
-
-    .form-container {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    .section {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .section.active {
+      display: block;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    input, select, textarea {
       width: 100%;
-      max-width: 400px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 26px;
-    }
-
-    input[type="text"],
-    input[type="email"] {
-      width: 100%;
-      padding: 12px;
+      padding: 10px;
       margin: 10px 0;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #00c9a7;
-      color: #fff;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 15px;
     }
-
-    button:hover {
-      background-color: #00b18a;
+    button:disabled {
+      background-color: #999;
     }
-
-    .success, .error {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      padding: 8px;
-      border-radius: 6px;
+    label {
+      font-weight: bold;
     }
-
-    .success {
-      color: #00ffcc;
-      background-color: rgba(0, 255, 204, 0.1);
-    }
-
-    .error {
-      color: #ff5e5e;
-      background-color: rgba(255, 0, 0, 0.1);
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Submit Your Info</h2>
-    <form id="contact-form">
-      <input type="text" id="name" name="name" placeholder="Your Name" required />
-      <input type="email" id="email" name="email" placeholder="Your Email" required />
-      <input type="text" id="location" name="location" placeholder="Your Location" required />
-      <button type="submit">Submit</button>
-    </form>
-    <div id="statusMessage"></div>
+  <div class="container">
+    <div class="section active" id="homeSection">
+      <h1>Join Swift Agency – We’re Building the Future, One Team at a Time!</h1>
+      <p>Swift Agency is growing—and fast! As a USA-based creative and digital services agency, we're proud to be working with a diverse range of clients, delivering top-tier solutions in design, marketing, content, and development.</p>
+      <p>Currently, we have two highly efficient teams operating under the Swift Agency banner. Now, we’re aiming higher. Our next milestone is to build ten specialized teams to handle a growing volume of international projects. To achieve this vision, we’re looking for skilled and passionate professionals who are ready to grow with us.</p>
+      <p>If you're talented, driven, and love working in a fast-paced, collaborative environment, we want you on our team.</p>
+      <ul>
+        <li>Project Manager</li>
+        <li>Sales & Marketing Specialist</li>
+        <li>Graphic Designer</li>
+        <li>Content Writer / Copywriter</li>
+        <li>Video Editor</li>
+        <li>Web Developer</li>
+        <li>Customer Support Executive</li>
+        <li>Accountant / Finance Manager</li>
+        <li>Social Media Manager</li>
+        <li>SEO Specialist</li>
+      </ul>
+      <p><strong>Why Join Swift Agency?</strong></p>
+      <ul>
+        <li>Work with international (USA-based) clients</li>
+        <li>Join a fast-growing agency with a clear mission</li>
+        <li>Be part of a structured and supportive team environment</li>
+        <li>Opportunity to grow with the company as we expand to 10 teams</li>
+        <li>Flexible work culture with room for creativity and innovation</li>
+      </ul>
+      <p>We believe in talent, transparency, and teamwork. If you’re ready to be part of something exciting and meaningful, fill out the form below and let’s build the future together.</p>
+      <button id="applyBtn">Apply Now</button>
+    </div>
+
+    <div class="section" id="section1">
+      <label for="name">Your Full Name:</label>
+      <input type="text" id="name" required />
+
+      <label><input type="checkbox" id="gverify" /> I'm not a robot (Google Verification)</label><br />
+
+      <label><input type="checkbox" id="terms" /> I agree to the terms and conditions</label><br />
+
+      <button id="next1" disabled>Next</button>
+    </div>
+
+    <div class="section" id="section2">
+      <label for="role">Select Role:</label>
+      <select id="role" required>
+        <option value="">-- Select a role --</option>
+        <option>Project Manager</option>
+        <option>Sales & Marketing Specialist</option>
+        <option>Graphic Designer</option>
+        <option>Content Writer / Copywriter</option>
+        <option>Video Editor</option>
+        <option>Web Developer</option>
+        <option>Customer Support Executive</option>
+        <option>Accountant / Finance Manager</option>
+        <option>Social Media Manager</option>
+        <option>SEO Specialist</option>
+      </select>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" required />
+
+      <label for="whatsapp">WhatsApp Number:</label>
+      <input type="text" id="whatsapp" required />
+
+      <label for="social">Social Media Link (Optional):</label>
+      <input type="url" id="social" />
+
+      <label for="address">Your Address:</label>
+      <input type="text" id="address" required />
+
+      <button id="next2" disabled>Next</button>
+    </div>
+
+    <div class="section" id="section3">
+      <label for="portfolio">Portfolio Link (Optional):</label>
+      <input type="url" id="portfolio" />
+
+      <label for="resume">Resume (Link or Upload Option):</label>
+      <input type="text" id="resume" placeholder="Provide resume link" />
+
+      <label for="source">How did you hear about us?</label>
+      <select id="source">
+        <option>Facebook</option>
+        <option>LinkedIn</option>
+        <option>Friend/Referral</option>
+        <option>Google Search</option>
+        <option>Other</option>
+      </select>
+
+      <button onclick="alert('Application submitted!')">Finish</button>
+    </div>
   </div>
 
   <script>
-    // Initialize EmailJS
-    emailjs.init("xu0U-SdD8tch3JB_3");
+    const nameInput = document.getElementById('name');
+    const gverify = document.getElementById('gverify');
+    const terms = document.getElementById('terms');
+    const next1 = document.getElementById('next1');
 
-    const form = document.getElementById("contact-form");
-    const statusMessage = document.getElementById("statusMessage");
+    const email = document.getElementById('email');
+    const whatsapp = document.getElementById('whatsapp');
+    const role = document.getElementById('role');
+    const address = document.getElementById('address');
+    const next2 = document.getElementById('next2');
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+    const applyBtn = document.getElementById('applyBtn');
 
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const location = document.getElementById("location").value;
+    function validateFirstPage() {
+      next1.disabled = !(nameInput.value.trim() && gverify.checked && terms.checked);
+    }
 
-      // Send data to EmailJS
-      emailjs.send("service_epqfzv3", "template_qereed5", {
-        name: name,
-        email: email,
-        location: location
-      })
-      .then(function(response) {
-        statusMessage.innerHTML = `<div class="success">✅ Message sent successfully!</div>`;
-        form.reset();
-      }, function(error) {
-        console.log("FAILED...", error);
-        statusMessage.innerHTML = `<div class="error">❌ Failed to send message. Please check your template variables or connection.</div>`;
-      });
+    function validateSecondPage() {
+      next2.disabled = !(role.value && email.value && whatsapp.value && address.value);
+    }
+
+    nameInput.addEventListener('input', validateFirstPage);
+    gverify.addEventListener('change', validateFirstPage);
+    terms.addEventListener('change', validateFirstPage);
+
+    email.addEventListener('input', validateSecondPage);
+    whatsapp.addEventListener('input', validateSecondPage);
+    role.addEventListener('change', validateSecondPage);
+    address.addEventListener('input', validateSecondPage);
+
+    applyBtn.addEventListener('click', () => {
+      document.getElementById('homeSection').classList.remove('active');
+      document.getElementById('section1').classList.add('active');
+    });
+
+    next1.addEventListener('click', () => {
+      document.getElementById('section1').classList.remove('active');
+      document.getElementById('section2').classList.add('active');
+    });
+
+    next2.addEventListener('click', () => {
+      document.getElementById('section2').classList.remove('active');
+      document.getElementById('section3').classList.add('active');
     });
   </script>
 </body>
