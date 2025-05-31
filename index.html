@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Your Info</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00c9a7;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background-color: #00b18a;
+    }
+
+    .success, .error {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .success {
+      color: #00ffcc;
+      background-color: rgba(0, 255, 204, 0.1);
+    }
+
+    .error {
+      color: #ff5e5e;
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Submit Your Info</h2>
+    <form id="contact-form">
+      <input type="text" id="name" name="name" placeholder="Your Name" required />
+      <input type="email" id="email" name="email" placeholder="Your Email" required />
+      <input type="text" id="location" name="location" placeholder="Your Location" required />
+      <button type="submit">Submit</button>
+    </form>
+    <div id="statusMessage"></div>
+  </div>
+
+  <script>
+    // Initialize EmailJS
+    emailjs.init("xu0U-SdD8tch3JB_3");
+
+    const form = document.getElementById("contact-form");
+    const statusMessage = document.getElementById("statusMessage");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const location = document.getElementById("location").value;
+
+      // Send data to EmailJS
+      emailjs.send("service_epqfzv3", "template_qereed5", {
+        name: name,
+        email: email,
+        location: location
+      })
+      .then(function(response) {
+        statusMessage.innerHTML = `<div class="success">✅ Message sent successfully!</div>`;
+        form.reset();
+      }, function(error) {
+        console.log("FAILED...", error);
+        statusMessage.innerHTML = `<div class="error">❌ Failed to send message. Please check your template variables or connection.</div>`;
+      });
+    });
+  </script>
+</body>
+</html>
