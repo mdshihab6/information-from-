@@ -54,6 +54,24 @@
     label {
       font-weight: bold;
     }
+    #successSection {
+      text-align: center;
+      padding: 40px;
+      background-color: #e0ffe0;
+      color: #2d862d;
+      border-radius: 10px;
+      animation: fadeInScale 1s ease-in-out;
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
     @media (max-width: 600px) {
       .container {
         padding: 10px;
@@ -150,7 +168,12 @@
         <option>Other</option>
       </select>
 
-      <button onclick="alert('Application submitted!')">Finish</button>
+      <button id="finishBtn">Finish</button>
+    </div>
+
+    <div class="section" id="successSection">
+      <h2>🎉 Application Submitted Successfully!</h2>
+      <p>Thank you for applying. Our team will get back to you soon.</p>
     </div>
   </div>
 
@@ -167,6 +190,10 @@
     const next2 = document.getElementById('next2');
 
     const applyBtn = document.getElementById('applyBtn');
+    const finishBtn = document.getElementById('finishBtn');
+
+    const successSection = document.getElementById('successSection');
+    successSection.style.display = 'none';
 
     function validateFirstPage() {
       next1.disabled = !(nameInput.value.trim() && gverify.checked && terms.checked);
@@ -198,6 +225,11 @@
     next2.addEventListener('click', () => {
       document.getElementById('section2').classList.remove('active');
       document.getElementById('section3').classList.add('active');
+    });
+
+    finishBtn.addEventListener('click', () => {
+      document.getElementById('section3').classList.remove('active');
+      successSection.style.display = 'block';
     });
   </script>
 </body>
